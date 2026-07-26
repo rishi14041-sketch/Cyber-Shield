@@ -1,0 +1,11 @@
+[Unit]
+Description=CyberShield SOC Flask application
+After=network.target
+[Service]
+User=www-data
+WorkingDirectory=/opt/cybershield-soc
+EnvironmentFile=/opt/cybershield-soc/.env
+ExecStart=/opt/cybershield-soc/.venv/bin/gunicorn --workers 3 --bind 127.0.0.1:8000 wsgi:app
+Restart=always
+[Install]
+WantedBy=multi-user.target
